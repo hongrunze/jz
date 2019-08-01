@@ -37,8 +37,8 @@ public class ServiceResultHelper {
 
         String[][] data = ServiceResultHelper.xmlString2StringArray(dest);
 
-        System.out.println("=========fsdaf");
-        System.out.println("=========fsdf");
+        System.out.println("=========");
+        System.out.println("=========");
         for(int i=0;i<data.length;i++){
             for(int j=0;j<data[i].length;j++){
                 if (j>0) System.out.print(",");
