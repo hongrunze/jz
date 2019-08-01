@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<serviceRequest>
+        <pkiId></pkiId><!--pkiId未知 。-->
+        <SenderID>C32-10000078</SenderID><!--请求方编号 。-->
+        <ServiceID>S32-10000121</ServiceID><!--服务方编号 。-->
+        <zdyhGmsfhm>321081198806180013</zdyhGmsfhm><!--终端用户身份证 。-->
+        <zdyhXm>罗勇</zdyhXm><!--终端用户姓名 。-->
+        <zdyhDwbm>321002000000</zdyhDwbm><!--终端用户单位编码 。-->
+        <zdyhDwmc>扬州市公安局广陵分局</zdyhDwmc><!--终端用户单位名称 。-->
+        <xtmc>执法记录仪平台</xtmc><!--终端系统名称 。-->
+        <zdyhJh>102334</zdyhJh><!--终端用户警号 。-->
+        <zdyhIp>50.96.47.66</zdyhIp><!--终端用户IP地址 。-->
+        <zdyhMac>0C:C4:7A:95:1F:CA</zdyhMac><!--终端用户MAC地址 。-->
+        <methodName></methodName><!--请求服务方法名 。-->
+        <condition> djdw='321002000000' </condition><!--请求服务方法名 。-->
+</serviceRequest>

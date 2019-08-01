@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jz.dao.RelationJzajMapper" >
+  <resultMap id="BaseResultMap" type="com.jz.model.RelationJzaj" >
+    <constructor >
+      <idArg column="ajbh" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="gljqbh" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ajmc" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ajlb" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="sldw" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="afsj" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="bary" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="sary" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="cjlb" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="cjrbh" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="cjrxm" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="cjdwbm" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="cjdwmc" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="cjsj" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="afdi" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="cljqnr" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="glsp" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="inserttime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="glgs" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ajbh, gljqbh, ajmc, ajlb, sldw, afsj, bary, sary, cjlb, cjrbh, cjrxm, cjdwbm, cjdwmc, 
+    cjsj, afdi, cljqnr, glsp, inserttime, glgs
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jz.model.RelationJzajExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from relation_jzaj
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from relation_jzaj
+    where ajbh = #{ajbh,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from relation_jzaj
+    where ajbh = #{ajbh,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.jz.model.RelationJzajExample" >
+    delete from relation_jzaj
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.jz.model.RelationJzaj" >
+    insert into relation_jzaj (ajbh, gljqbh, ajmc, 
+      ajlb, sldw, afsj, bary, 
+      sary, cjlb, cjrbh, 
+      cjrxm, cjdwbm, cjdwmc, 
+      cjsj, afdi, cljqnr, 
+      glsp, inserttime, glgs
+      )
+    values (#{ajbh,jdbcType=VARCHAR}, #{gljqbh,jdbcType=VARCHAR}, #{ajmc,jdbcType=VARCHAR}, 
+      #{ajlb,jdbcType=VARCHAR}, #{sldw,jdbcType=VARCHAR}, #{afsj,jdbcType=VARCHAR}, #{bary,jdbcType=VARCHAR}, 
+      #{sary,jdbcType=VARCHAR}, #{cjlb,jdbcType=VARCHAR}, #{cjrbh,jdbcType=VARCHAR}, 
+      #{cjrxm,jdbcType=VARCHAR}, #{cjdwbm,jdbcType=VARCHAR}, #{cjdwmc,jdbcType=VARCHAR}, 
+      #{cjsj,jdbcType=VARCHAR}, #{afdi,jdbcType=VARCHAR}, #{cljqnr,jdbcType=VARCHAR}, 
+      #{glsp,jdbcType=VARCHAR}, #{inserttime,jdbcType=TIMESTAMP}, #{glgs,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jz.model.RelationJzaj" >
+    insert into relation_jzaj
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ajbh != null" >
+        ajbh,
+      </if>
+      <if test="gljqbh != null" >
+        gljqbh,
+      </if>
+      <if test="ajmc != null" >
+        ajmc,
+      </if>
+      <if test="ajlb != null" >
+        ajlb,
+      </if>
+      <if test="sldw != null" >
+        sldw,
+      </if>
+      <if test="afsj != null" >
+        afsj,
+      </if>
+      <if test="bary != null" >
+        bary,
+      </if>
+      <if test="sary != null" >
+        sary,
+      </if>
+      <if test="cjlb != null" >
+        cjlb,
+      </if>
+      <if test="cjrbh != null" >
+        cjrbh,
+      </if>
+      <if test="cjrxm != null" >
+        cjrxm,
+      </if>
+      <if test="cjdwbm != null" >
+        cjdwbm,
+      </if>
+      <if test="cjdwmc != null" >
+        cjdwmc,
+      </if>
+      <if test="cjsj != null" >
+        cjsj,
+      </if>
+      <if test="afdi != null" >
+        afdi,
+      </if>
+      <if test="cljqnr != null" >
+        cljqnr,
+      </if>
+      <if test="glsp != null" >
+        glsp,
+      </if>
+      <if test="inserttime != null" >
+        inserttime,
+      </if>
+      <if test="glgs != null" >
+        glgs,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ajbh != null" >
+        #{ajbh,jdbcType=VARCHAR},
+      </if>
+      <if test="gljqbh != null" >
+        #{gljqbh,jdbcType=VARCHAR},
+      </if>
+      <if test="ajmc != null" >
+        #{ajmc,jdbcType=VARCHAR},
+      </if>
+      <if test="ajlb != null" >
+        #{ajlb,jdbcType=VARCHAR},
+      </if>
+      <if test="sldw != null" >
+        #{sldw,jdbcType=VARCHAR},
+      </if>
+      <if test="afsj != null" >
+        #{afsj,jdbcType=VARCHAR},
+      </if>
+      <if test="bary != null" >
+        #{bary,jdbcType=VARCHAR},
+      </if>
+      <if test="sary != null" >
+        #{sary,jdbcType=VARCHAR},
+      </if>
+      <if test="cjlb != null" >
+        #{cjlb,jdbcType=VARCHAR},
+      </if>
+      <if test="cjrbh != null" >
+        #{cjrbh,jdbcType=VARCHAR},
+      </if>
+      <if test="cjrxm != null" >
+        #{cjrxm,jdbcType=VARCHAR},
+      </if>
+      <if test="cjdwbm != null" >
+        #{cjdwbm,jdbcType=VARCHAR},
+      </if>
+      <if test="cjdwmc != null" >
+        #{cjdwmc,jdbcType=VARCHAR},
+      </if>
+      <if test="cjsj != null" >
+        #{cjsj,jdbcType=VARCHAR},
+      </if>
+      <if test="afdi != null" >
+        #{afdi,jdbcType=VARCHAR},
+      </if>
+      <if test="cljqnr != null" >
+        #{cljqnr,jdbcType=VARCHAR},
+      </if>
+      <if test="glsp != null" >
+        #{glsp,jdbcType=VARCHAR},
+      </if>
+      <if test="inserttime != null" >
+        #{inserttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="glgs != null" >
+        #{glgs,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.jz.model.RelationJzajExample" resultType="java.lang.Integer" >
+    select count(*) from relation_jzaj
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update relation_jzaj
+    <set >
+      <if test="record.ajbh != null" >
+        ajbh = #{record.ajbh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gljqbh != null" >
+        gljqbh = #{record.gljqbh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ajmc != null" >
+        ajmc = #{record.ajmc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ajlb != null" >
+        ajlb = #{record.ajlb,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sldw != null" >
+        sldw = #{record.sldw,jdbcType=VARCHAR},
+      </if>
+      <if test="record.afsj != null" >
+        afsj = #{record.afsj,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bary != null" >
+        bary = #{record.bary,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sary != null" >
+        sary = #{record.sary,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cjlb != null" >
+        cjlb = #{record.cjlb,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cjrbh != null" >
+        cjrbh = #{record.cjrbh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cjrxm != null" >
+        cjrxm = #{record.cjrxm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cjdwbm != null" >
+        cjdwbm = #{record.cjdwbm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cjdwmc != null" >
+        cjdwmc = #{record.cjdwmc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cjsj != null" >
+        cjsj = #{record.cjsj,jdbcType=VARCHAR},
+      </if>
+      <if test="record.afdi != null" >
+        afdi = #{record.afdi,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cljqnr != null" >
+        cljqnr = #{record.cljqnr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.glsp != null" >
+        glsp = #{record.glsp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.inserttime != null" >
+        inserttime = #{record.inserttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.glgs != null" >
+        glgs = #{record.glgs,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update relation_jzaj
+    set ajbh = #{record.ajbh,jdbcType=VARCHAR},
+      gljqbh = #{record.gljqbh,jdbcType=VARCHAR},
+      ajmc = #{record.ajmc,jdbcType=VARCHAR},
+      ajlb = #{record.ajlb,jdbcType=VARCHAR},
+      sldw = #{record.sldw,jdbcType=VARCHAR},
+      afsj = #{record.afsj,jdbcType=VARCHAR},
+      bary = #{record.bary,jdbcType=VARCHAR},
+      sary = #{record.sary,jdbcType=VARCHAR},
+      cjlb = #{record.cjlb,jdbcType=VARCHAR},
+      cjrbh = #{record.cjrbh,jdbcType=VARCHAR},
+      cjrxm = #{record.cjrxm,jdbcType=VARCHAR},
+      cjdwbm = #{record.cjdwbm,jdbcType=VARCHAR},
+      cjdwmc = #{record.cjdwmc,jdbcType=VARCHAR},
+      cjsj = #{record.cjsj,jdbcType=VARCHAR},
+      afdi = #{record.afdi,jdbcType=VARCHAR},
+      cljqnr = #{record.cljqnr,jdbcType=VARCHAR},
+      glsp = #{record.glsp,jdbcType=VARCHAR},
+      inserttime = #{record.inserttime,jdbcType=TIMESTAMP},
+      glgs = #{record.glgs,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jz.model.RelationJzaj" >
+    update relation_jzaj
+    <set >
+      <if test="gljqbh != null" >
+        gljqbh = #{gljqbh,jdbcType=VARCHAR},
+      </if>
+      <if test="ajmc != null" >
+        ajmc = #{ajmc,jdbcType=VARCHAR},
+      </if>
+      <if test="ajlb != null" >
+        ajlb = #{ajlb,jdbcType=VARCHAR},
+      </if>
+      <if test="sldw != null" >
+        sldw = #{sldw,jdbcType=VARCHAR},
+      </if>
+      <if test="afsj != null" >
+        afsj = #{afsj,jdbcType=VARCHAR},
+      </if>
+      <if test="bary != null" >
+        bary = #{bary,jdbcType=VARCHAR},
+      </if>
+      <if test="sary != null" >
+        sary = #{sary,jdbcType=VARCHAR},
+      </if>
+      <if test="cjlb != null" >
+        cjlb = #{cjlb,jdbcType=VARCHAR},
+      </if>
+      <if test="cjrbh != null" >
+        cjrbh = #{cjrbh,jdbcType=VARCHAR},
+      </if>
+      <if test="cjrxm != null" >
+        cjrxm = #{cjrxm,jdbcType=VARCHAR},
+      </if>
+      <if test="cjdwbm != null" >
+        cjdwbm = #{cjdwbm,jdbcType=VARCHAR},
+      </if>
+      <if test="cjdwmc != null" >
+        cjdwmc = #{cjdwmc,jdbcType=VARCHAR},
+      </if>
+      <if test="cjsj != null" >
+        cjsj = #{cjsj,jdbcType=VARCHAR},
+      </if>
+      <if test="afdi != null" >
+        afdi = #{afdi,jdbcType=VARCHAR},
+      </if>
+      <if test="cljqnr != null" >
+        cljqnr = #{cljqnr,jdbcType=VARCHAR},
+      </if>
+      <if test="glsp != null" >
+        glsp = #{glsp,jdbcType=VARCHAR},
+      </if>
+      <if test="inserttime != null" >
+        inserttime = #{inserttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="glgs != null" >
+        glgs = #{glgs,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ajbh = #{ajbh,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jz.model.RelationJzaj" >
+    update relation_jzaj
+    set gljqbh = #{gljqbh,jdbcType=VARCHAR},
+      ajmc = #{ajmc,jdbcType=VARCHAR},
+      ajlb = #{ajlb,jdbcType=VARCHAR},
+      sldw = #{sldw,jdbcType=VARCHAR},
+      afsj = #{afsj,jdbcType=VARCHAR},
+      bary = #{bary,jdbcType=VARCHAR},
+      sary = #{sary,jdbcType=VARCHAR},
+      cjlb = #{cjlb,jdbcType=VARCHAR},
+      cjrbh = #{cjrbh,jdbcType=VARCHAR},
+      cjrxm = #{cjrxm,jdbcType=VARCHAR},
+      cjdwbm = #{cjdwbm,jdbcType=VARCHAR},
+      cjdwmc = #{cjdwmc,jdbcType=VARCHAR},
+      cjsj = #{cjsj,jdbcType=VARCHAR},
+      afdi = #{afdi,jdbcType=VARCHAR},
+      cljqnr = #{cljqnr,jdbcType=VARCHAR},
+      glsp = #{glsp,jdbcType=VARCHAR},
+      inserttime = #{inserttime,jdbcType=TIMESTAMP},
+      glgs = #{glgs,jdbcType=INTEGER}
+    where ajbh = #{ajbh,jdbcType=VARCHAR}
+  </update>
+</mapper>
