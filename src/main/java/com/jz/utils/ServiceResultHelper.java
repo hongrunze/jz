@@ -37,8 +37,8 @@ public class ServiceResultHelper {
 
         String[][] data = ServiceResultHelper.xmlString2StringArray(dest);
 
-        System.out.println("=========");
-        System.out.println("=========");
+        System.out.println("=========111");
+        System.out.println("=========222");
         for(int i=0;i<data.length;i++){
             for(int j=0;j<data[i].length;j++){
                 if (j>0) System.out.print(",");
