@@ -1,5 +1,6 @@
 package com.jz.utils;
 
+import com.jz.model.RelationJzaj;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 import org.springframework.util.ResourceUtils;
@@ -16,6 +17,7 @@ import javax.xml.xpath.XPathExpression;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 import java.io.StringReader;
+import java.text.SimpleDateFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -24,7 +26,7 @@ public class ServiceResultHelper {
     public static void main(String[] args) throws  Exception {
 
         SAXReader saxReader = new SAXReader();
-        org.dom4j.Document doucment = saxReader.read(ResourceUtils.getFile("D:\\police_jz\\src\\main\\resources\\data\\data.xml"));
+        org.dom4j.Document doucment = saxReader.read(ResourceUtils.getFile("D:\\jz\\src\\main\\resources\\data\\data.xml"));
         String xml=doucment.asXML();
 
         Pattern p = Pattern.compile("\n");
@@ -39,13 +41,138 @@ public class ServiceResultHelper {
 
         System.out.println("=========111");
         System.out.println("=========222");
-        for(int i=0;i<data.length;i++){
-            for(int j=0;j<data[i].length;j++){
-                if (j>0) System.out.print(",");
-                System.out.println(data[i][j]);
+
+        if(data.length>0){//获取返回的行数
+            for(int i=0;i<data.length;i++){
+                int ajbh=0;
+                int gljqbh=0;
+                int ajmc=0;
+                int ajlb=0;
+                int sldw=0;
+                int fasjd=0;
+                int zbrxm=0;
+                int sary=0;
+                int cjlb=0;
+                int cjrbh=0;
+                int cjrxm=0;
+                int cjdwbm=0;
+                int cjdwmc=0;
+                int cjsj=0;
+                int afdi=0;
+                int cljqnr=0;
+                int glsp=0;
+                int inserttime=0;
+                int glgs=0;
+
+                if(i==0){//获取字段名称位置
+                    for(int j=0;j<data[0].length;j++){
+                        if( data[0][j].equals("ajbh")){//案件编号
+                            ajbh=j;
+                            break;
+                        }
+                        if( data[0][j].equals("gljqbh")){//关联警情编号
+                            gljqbh=j;
+                            break;
+                        }
+                        if( data[0][j].equals("ajmc")){//案件名称
+                            ajmc=j;
+                            break;
+                        }
+                        if( data[0][j].equals("ajlb")){//案件类别
+                            ajlb=j;
+                            break;
+                        }
+                        if( data[0][j].equals("sldw")){//受理单位
+                            sldw=j;
+                            break;
+                        }
+                        if( data[0][j].equals("fasjd")){//案发时间
+                            fasjd=j;
+                            break;
+                        }
+                        if( data[0][j].equals("zbrxm")){//办案人员
+                            zbrxm=j;
+                            break;
+                        }
+                        if( data[0][j].equals("sary")){//涉案人员
+                            sary=j;
+                            break;
+                        }
+                        if( data[0][j].equals("cjlb")){//处警类别
+                            cjlb=j;
+                            break;
+                        }
+                        if( data[0][j].equals("cjrbh")){//处警人警号
+                            cjrbh=j;
+                            break;
+                        }
+                        if( data[0][j].equals("cjrxm")){//处警人姓名
+                            cjrxm=j;
+                            break;
+                        }
+                        if( data[0][j].equals("cjdwbm")){//处警单位代码
+                            cjdwbm=j;
+                            break;
+                        }
+                        if( data[0][j].equals("cjdwmc")){//处警单位名称
+                            cjdwmc=j;
+                            break;
+                        }
+                        if( data[0][j].equals("cjsj")){//处警时间
+                            cjsj=j;
+                            break;
+                        }
+                        if( data[0][j].equals("afdi")){//发生地点
+                            afdi=j;
+                            break;
+                        }
+                        if( data[0][j].equals("cljqnr")){//案情及处理
+                            cljqnr=j;
+                            break;
+                        }
+                        if( data[0][j].equals("glsp")){//相关联视频
+                            glsp=j;
+                            break;
+                        }
+                        if( data[0][j].equals("inserttime")){//记录插入时间
+                            inserttime=j;
+                            break;
+                        }
+                        if( data[0][j].equals("glgs")){//关联个数
+                            glgs=j;
+                            break;
+                        }
+                    }
+                }
+                if(i>2){
+                    for(int j=0;j<data[i].length;j++){
+                        RelationJzaj model=new RelationJzaj();
+                        model.setAjbh(data[i][ajbh]);
+                        model.setGljqbh(data[i][gljqbh]);
+                        model.setAjmc(data[i][ajmc]);
+                        model.setAjlb(data[i][ajlb]);
+                        model.setSldw(data[i][sldw]);
+                        model.setAfsj(data[i][fasjd]);
+                        model.setBary(data[i][zbrxm]);
+                        model.setSary(data[i][sary]);
+                        model.setCjlb(data[i][cjlb]);
+                        model.setCjrbh(data[i][cjrbh]);
+                        model.setCjrxm(data[i][cjrxm]);
+                        model.setCjdwbm(data[i][cjdwbm]);
+                        model.setCjdwmc(data[i][cjdwmc]);
+                        model.setCjsj(data[i][cjsj]);
+                        model.setAfdi(data[i][afdi]);
+                        model.setCljqnr(data[i][cljqnr]);
+                        model.setGlsp(data[i][glsp]);
+                        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
+                        model.setInserttime(data[i][inserttime]==null? null:simpleDateFormat.parse(data[i][inserttime]));
+                        model.setGlgs(data[i][glgs]==null? null:Integer.parseInt(data[i][glgs]));
+
+                    }
+                }
             }
-            System.out.println();
         }
+
     }
 
     public static Node getServiceID(String xmlText)  {

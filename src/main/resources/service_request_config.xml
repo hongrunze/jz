@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<serviceRequest>
+<serviceRequest><!-- 案件信息-->
         <pkiId></pkiId><!--pkiId未知 。-->
         <SenderID>C32-10000078</SenderID><!--请求方编号 。-->
         <ServiceID>S32-10000121</ServiceID><!--服务方编号 。-->
@@ -12,5 +12,5 @@
         <zdyhIp>50.96.47.66</zdyhIp><!--终端用户IP地址 。-->
         <zdyhMac>0C:C4:7A:95:1F:CA</zdyhMac><!--终端用户MAC地址 。-->
         <methodName></methodName><!--请求服务方法名 。-->
-        <condition> djdw='321002000000' </condition><!--请求服务方法名 。-->
+        <condition> djdw='321002000000' </condition><!--接口条件 。-->
 </serviceRequest>
