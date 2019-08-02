@@ -20,7 +20,7 @@ public class WbfwQueryUtil {
     private static final Logger logger = LoggerFactory.getLogger(WbfwQueryUtil.class);
 
     /**
-     * 江苏省厅总线服务节点
+     * 江苏省厅总线服务节点1
      */
     private static final String ST_NODE_URL = "http://10.36.159.78:8585/node";
 
