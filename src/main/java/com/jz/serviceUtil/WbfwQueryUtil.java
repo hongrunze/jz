@@ -107,12 +107,12 @@ public class WbfwQueryUtil {
         int numRow=20;
         QueryCaller caller = new QueryCaller(nodeUrl, SenderID, ServiceID, zdyhGmsfhm, zdyhXm, zdyhDwbm,
                 zdyhDwmc, zdyhJh, xtmc, zdyhIp, zdyhMac);
-        String result = caller.query(condition, startRow, numRow);
-        logger.info(">>>[callQuery]查询结果" + result);
+        //String result = caller.query(condition, startRow, numRow);
+        //logger.info(">>>[callQuery]查询结果" + result);
 
-        /*SAXReader saxReader = new SAXReader();
+        SAXReader saxReader = new SAXReader();
         org.dom4j.Document doucment = saxReader.read(ResourceUtils.getFile("D:\\jz\\src\\main\\resources\\data\\data.xml"));
-        String result=doucment.asXML();*/
+        String result=doucment.asXML();
 
         Pattern p = Pattern.compile("\n");
         Matcher m = p.matcher(result);
