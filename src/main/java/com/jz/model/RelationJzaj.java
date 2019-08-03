@@ -40,6 +40,8 @@ public class RelationJzaj implements Serializable {
 
     private Date inserttime;
 
+    private Date djsj;
+
     private Integer glgs;
 
     public RelationJzaj(String ajbh, String gljqbh, String ajmc, String ajlb, String sldw, String afsj, String bary, String sary, String cjlb, String cjrbh, String cjrxm, String cjdwbm, String cjdwmc, String cjsj, String afdi, String cljqnr, String glsp, Date inserttime, Integer glgs) {
@@ -218,5 +220,13 @@ public class RelationJzaj implements Serializable {
 
     public void setGlgs(Integer glgs) {
         this.glgs = glgs;
+    }
+
+    public Date getDjsj() {
+        return djsj;
+    }
+
+    public void setDjsj(Date djsj) {
+        this.djsj = djsj;
     }
 }

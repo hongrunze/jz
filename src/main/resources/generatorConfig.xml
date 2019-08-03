@@ -4,7 +4,7 @@
 	<!-- 此属性放在第一位置 -->
 	<properties  resource="application.properties"/>
 	
-    <classPathEntry  location="D:\\generatorCode\\mysql-connector-java-8.0.11.jar" />
+    <classPathEntry  location="D:\\generatorCode\\mysql-connector-java-8.0.15.jar" />
     
     
     <!-- 

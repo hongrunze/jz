@@ -18,8 +18,16 @@ public class SchedulerConfigService implements ISchedulerConfigService {
     @Autowired
     private SchedulerConfigMapper schedulerConfigMapper;
 
-    public List<SchedulerConfig> getSchedulerConfig(){
+    public List<SchedulerConfig> getSchedulerConfig(String key){
         SchedulerConfigExample schedulerConfigExample=new SchedulerConfigExample();
+        schedulerConfigExample.createCriteria().andTriggerNameEqualTo(key);
         return schedulerConfigMapper.selectByExample(schedulerConfigExample);
+    }
+
+    @Override
+    public void updateSchedulerConfig(SchedulerConfig schedulerConfig) {
+        SchedulerConfigExample schedulerConfigExample=new SchedulerConfigExample();
+        schedulerConfigExample.createCriteria().andIdEqualTo(schedulerConfig.getId());
+        schedulerConfigMapper.updateByExample(schedulerConfig,schedulerConfigExample);
     }
 }

@@ -5,6 +5,9 @@
     <constructor >
       <arg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="cron" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="trigger_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="start_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="num_row" jdbcType="INTEGER" javaType="java.lang.Integer" />
     </constructor>
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -66,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, cron
+    id, cron, trigger_name, start_time, num_row
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jz.model.SchedulerConfigExample" >
     select
@@ -90,8 +93,10 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.jz.model.SchedulerConfig" >
-    insert into scheduler_config (id, cron)
-    values (#{id,jdbcType=INTEGER}, #{cron,jdbcType=VARCHAR})
+    insert into scheduler_config (id, cron, trigger_name,
+      start_time, num_row)
+    values (#{id,jdbcType=INTEGER}, #{cron,jdbcType=VARCHAR}, #{triggerName,jdbcType=VARCHAR},
+      #{startTime,jdbcType=TIMESTAMP}, #{numRow,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.jz.model.SchedulerConfig" >
     insert into scheduler_config
@@ -102,6 +107,15 @@
       <if test="cron != null" >
         cron,
       </if>
+      <if test="triggerName != null" >
+        trigger_name,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="numRow != null" >
+        num_row,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -109,6 +123,15 @@
       </if>
       <if test="cron != null" >
         #{cron,jdbcType=VARCHAR},
+      </if>
+      <if test="triggerName != null" >
+        #{triggerName,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="numRow != null" >
+        #{numRow,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -127,6 +150,15 @@
       <if test="record.cron != null" >
         cron = #{record.cron,jdbcType=VARCHAR},
       </if>
+      <if test="record.triggerName != null" >
+        trigger_name = #{record.triggerName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.startTime != null" >
+        start_time = #{record.startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.numRow != null" >
+        num_row = #{record.numRow,jdbcType=INTEGER},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -135,7 +167,10 @@
   <update id="updateByExample" parameterType="map" >
     update scheduler_config
     set id = #{record.id,jdbcType=INTEGER},
-      cron = #{record.cron,jdbcType=VARCHAR}
+    cron = #{record.cron,jdbcType=VARCHAR},
+    trigger_name = #{record.triggerName,jdbcType=VARCHAR},
+    start_time = #{record.startTime,jdbcType=TIMESTAMP},
+    num_row = #{record.numRow,jdbcType=INTEGER}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>

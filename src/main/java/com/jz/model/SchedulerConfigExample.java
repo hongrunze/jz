@@ -1,6 +1,7 @@
 package com.jz.model;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class SchedulerConfigExample {
@@ -231,6 +232,196 @@ public class SchedulerConfigExample {
 
         public Criteria andCronNotBetween(String value1, String value2) {
             addCriterion("cron not between", value1, value2, "cron");
+            return (Criteria) this;
+        }
+
+        public Criteria andTriggerNameIsNull() {
+            addCriterion("trigger_name is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTriggerNameIsNotNull() {
+            addCriterion("trigger_name is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTriggerNameEqualTo(String value) {
+            addCriterion("trigger_name =", value, "triggerName");
+            return (Criteria) this;
+        }
+
+        public Criteria andTriggerNameNotEqualTo(String value) {
+            addCriterion("trigger_name <>", value, "triggerName");
+            return (Criteria) this;
+        }
+
+        public Criteria andTriggerNameGreaterThan(String value) {
+            addCriterion("trigger_name >", value, "triggerName");
+            return (Criteria) this;
+        }
+
+        public Criteria andTriggerNameGreaterThanOrEqualTo(String value) {
+            addCriterion("trigger_name >=", value, "triggerName");
+            return (Criteria) this;
+        }
+
+        public Criteria andTriggerNameLessThan(String value) {
+            addCriterion("trigger_name <", value, "triggerName");
+            return (Criteria) this;
+        }
+
+        public Criteria andTriggerNameLessThanOrEqualTo(String value) {
+            addCriterion("trigger_name <=", value, "triggerName");
+            return (Criteria) this;
+        }
+
+        public Criteria andTriggerNameLike(String value) {
+            addCriterion("trigger_name like", value, "triggerName");
+            return (Criteria) this;
+        }
+
+        public Criteria andTriggerNameNotLike(String value) {
+            addCriterion("trigger_name not like", value, "triggerName");
+            return (Criteria) this;
+        }
+
+        public Criteria andTriggerNameIn(List<String> values) {
+            addCriterion("trigger_name in", values, "triggerName");
+            return (Criteria) this;
+        }
+
+        public Criteria andTriggerNameNotIn(List<String> values) {
+            addCriterion("trigger_name not in", values, "triggerName");
+            return (Criteria) this;
+        }
+
+        public Criteria andTriggerNameBetween(String value1, String value2) {
+            addCriterion("trigger_name between", value1, value2, "triggerName");
+            return (Criteria) this;
+        }
+
+        public Criteria andTriggerNameNotBetween(String value1, String value2) {
+            addCriterion("trigger_name not between", value1, value2, "triggerName");
+            return (Criteria) this;
+        }
+
+        public Criteria andStartTimeIsNull() {
+            addCriterion("start_time is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStartTimeIsNotNull() {
+            addCriterion("start_time is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStartTimeEqualTo(Date value) {
+            addCriterion("start_time =", value, "startTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andStartTimeNotEqualTo(Date value) {
+            addCriterion("start_time <>", value, "startTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andStartTimeGreaterThan(Date value) {
+            addCriterion("start_time >", value, "startTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andStartTimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("start_time >=", value, "startTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andStartTimeLessThan(Date value) {
+            addCriterion("start_time <", value, "startTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andStartTimeLessThanOrEqualTo(Date value) {
+            addCriterion("start_time <=", value, "startTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andStartTimeIn(List<Date> values) {
+            addCriterion("start_time in", values, "startTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andStartTimeNotIn(List<Date> values) {
+            addCriterion("start_time not in", values, "startTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andStartTimeBetween(Date value1, Date value2) {
+            addCriterion("start_time between", value1, value2, "startTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andStartTimeNotBetween(Date value1, Date value2) {
+            addCriterion("start_time not between", value1, value2, "startTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumRowIsNull() {
+            addCriterion("num_row is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumRowIsNotNull() {
+            addCriterion("num_row is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumRowEqualTo(Integer value) {
+            addCriterion("num_row =", value, "numRow");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumRowNotEqualTo(Integer value) {
+            addCriterion("num_row <>", value, "numRow");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumRowGreaterThan(Integer value) {
+            addCriterion("num_row >", value, "numRow");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumRowGreaterThanOrEqualTo(Integer value) {
+            addCriterion("num_row >=", value, "numRow");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumRowLessThan(Integer value) {
+            addCriterion("num_row <", value, "numRow");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumRowLessThanOrEqualTo(Integer value) {
+            addCriterion("num_row <=", value, "numRow");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumRowIn(List<Integer> values) {
+            addCriterion("num_row in", values, "numRow");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumRowNotIn(List<Integer> values) {
+            addCriterion("num_row not in", values, "numRow");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumRowBetween(Integer value1, Integer value2) {
+            addCriterion("num_row between", value1, value2, "numRow");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumRowNotBetween(Integer value1, Integer value2) {
+            addCriterion("num_row not between", value1, value2, "numRow");
             return (Criteria) this;
         }
     }

@@ -2,6 +2,7 @@ package com.jz.serviceUtil;
 
 import com.fwjk.caller.QueryCaller;
 import com.jz.model.RelationJzaj;
+import com.jz.model.RelationJzjq;
 import com.jz.utils.ServiceResultHelper;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
@@ -21,16 +22,19 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class WbfwQueryUtil {
+/**
+ * 警情信息
+ */
+public class WbfwQueryJqUtil {
 
-    private static final Logger logger = LoggerFactory.getLogger(WbfwQueryUtil.class);
+    private static final Logger logger = LoggerFactory.getLogger(WbfwQueryJqUtil.class);
 
     /**
      * 江苏省厅总线服务节点1
      */
     private static final String ST_NODE_URL = "http://10.36.159.78:8585/node";
 
-    public static List<RelationJzaj> callDxyhdjzl(int rowNum,Date startTime) throws Exception{
+    public static List<RelationJzjq> callDxyhdjzl(int rowNum,Date startTime) throws Exception{
         logger.info("WbfwQueryUtil callDxyhdjzl begin");
         String pkiId = "";
         String SenderID = "";// 请求方编号 。
@@ -48,7 +52,7 @@ public class WbfwQueryUtil {
         try {
             //解析配置文件信息
             SAXReader saxReader = new SAXReader();
-            Document doucment = saxReader.read(ResourceUtils.getFile("classpath:service_request_config.xml"));
+            Document doucment = saxReader.read(ResourceUtils.getFile("classpath:service_request_config_jq.xml"));
             Element root = doucment.getRootElement();// 得到根节点
 
             for (Iterator i = root.elementIterator(); i.hasNext();) {
@@ -125,117 +129,147 @@ public class WbfwQueryUtil {
         Node node=ServiceResultHelper.getServiceID(dest);//得到serviceId节点
         logger.info(node.getNodeName());
         logger.info(node.getTextContent());
-        List<RelationJzaj> models=null;
+        List<RelationJzjq> models=null;
         //案件基本信息表数据查询解析
-        if("S32-10000121".equals(node.getTextContent())){
+        if("S32-10000124".equals(node.getTextContent())){
             //解析结果
             String[][] data = ServiceResultHelper.xmlString2StringArray(dest);
 
-            models=getAjByData(data);
+            models=getJqByData(data);
             logger.info("=========");
             logger.info("=========");
         }
 
-        String countResult = caller.queryCount(condition);
-        logger.info(">>>[callQuery]总数：" + countResult);
+        //String countResult = caller.queryCount(condition);
+        //logger.info(">>>[callQuery]总数：" + countResult);
 
         logger.info("WbfwQueryUtil callDxyhdjzl end");
         return models;
     }
 
-    private static List<RelationJzaj> getAjByData(String[][] data){
-        List<RelationJzaj> modes=new ArrayList<RelationJzaj>();
-        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyyMMddHHmmss");
+    private static List<RelationJzjq> getJqByData(String[][] data){
+        List<RelationJzjq> modes=new ArrayList<RelationJzjq>();
         if(data.length>0){//获取返回的行数
-            int ajbh=-1;
-            int gljqbh=-1;
-            int ajmc=-1;
-            int ajlb=-1;
-            int sldw=-1;
-            int fasjd=-1;
-            int zbrxm=-1;
-            int cjrbh=-1;
-            int cjrxm=-1;
-            int cjdwbm=-1;
-            int cjdwmc=-1;
-            int cjsj=-1;
-            int afdi=-1;
-            int cljqnr=-1;
-            int djsj=-1;
+            int jqbh  =-1;//警情编号
+            int jqlb  =-1;//警情类别
+            int jqly  =-1;//警情来源
+            int bjlx  =-1;//报警类型
+            int cjbs  =-1;//处警标识
+            int glaj  =-1;//关联案件编号
+            int jjrbh =-1;//接警人编号
+            int jjrxm =-1;//接警人姓名
+            int bjr   =-1;//报警人
+            int bjnr  =-1;//报警内容
+            int sfdd  =-1;//事发地点
+            int lxdh  =-1;//报警人联系电话
+            int bjrdz =-1;//报警人住址
+            int jjdw  =-1;//接警单位
+            int cjdw  =-1;//处警单位
+            int cjmj  =-1;//处警民警账号
+            int cjmjxm=-1;//处警民警姓名
+            int glsp  =-1;//相关联视频
+            int bjdhsj=-1;//报警时间
+            int jjrqsj=-1;//接警日期时间
+            int ddxcsj=-1;//现场到达时间
+            int cjsj  =-1;//处警时间
+            int djsj  =-1;//处警登记时间
+            int inserttime=-1;//记录插入时间
+            int glgs =-1;// 关联个数
 
             for(int i=0;i<data.length;i++){
                 if(i==0){//获取字段名称位置
                     for(int j=0;j<data[0].length;j++){
-                        if(("ajbh").toUpperCase().equals(data[0][j])){//案件编号
-                            ajbh=j;
+                        if(("jqbh").toUpperCase().equals(data[0][j])){//警情编号
+                            jqbh=j;
                             continue;
                         }
-                        if("zajbh".toUpperCase().equals(data[0][j])){//关联警情编号
-                            gljqbh=j;
+                        if("jqlb".toUpperCase().equals(data[0][j])){//警情类别
+                            jqlb=j;
                             continue;
                         }
-                        if("ajmc".toUpperCase().equals(data[0][j])){//案件名称
-                            ajmc=j;
+                        if("jqly".toUpperCase().equals(data[0][j])){//警情来源
+                            jqly=j;
                             continue;
                         }
-                        if("ajlb".toUpperCase().equals(data[0][j])){//案件类别
-                            ajlb=j;
+                        if("bjlx".toUpperCase().equals(data[0][j])){//报警类型
+                            bjlx=j;
                             continue;
                         }
-                        if("sldw".toUpperCase().equals(data[0][j])){//受理单位
-                            sldw=j;
+                        if("cjbs".toUpperCase().equals(data[0][j])){//处警标识
+                            cjbs=j;
                             continue;
                         }
-                        if("fxsjsx".toUpperCase().equals(data[0][j])){//案发时间
-                            fasjd=j;
+                        if("glaj".toUpperCase().equals(data[0][j])){//关联案件编号
+                            glaj=j;
                             continue;
                         }
-                        if("zbrxm".toUpperCase().equals(data[0][j])){//办案人员
-                            zbrxm=j;
+                        if("jjrbh".toUpperCase().equals(data[0][j])){//接警人编号
+                            jjrbh=j;
                             continue;
                         }
-                        /*if("sary".toUpperCase().equals(data[0][j])){//涉案人员
-                            sary=j;
+                        if("jjrxm".toUpperCase().equals(data[0][j])){//接警人姓名
+                            jjrxm=j;
                             continue;
                         }
-                        if("cjlb".toUpperCase().equals(data[0][j])){//处警类别
-                            cjlb=j;
-                            continue;
-                        }*/
-                        if("cjrbh".toUpperCase().equals(data[0][j])){//处警人警号
-                            cjrbh=j;
+                        if("bjr".toUpperCase().equals(data[0][j])){//报警人
+                            bjr=j;
                             continue;
                         }
-                        if("cjrxm".toUpperCase().equals(data[0][j])){//处警人姓名
-                            cjrxm=j;
+                        if("bjnr".toUpperCase().equals(data[0][j])){//报警内容
+                            bjnr=j;
                             continue;
                         }
-                        if("sldw".toUpperCase().equals(data[0][j])){//处警单位代码
-                            cjdwbm=j;
+                        if("sfdd".toUpperCase().equals(data[0][j])){//事发地点
+                            sfdd=j;
                             continue;
                         }
-                        if("sldwmc".toUpperCase().equals(data[0][j])){//处警单位名称
-                            cjdwmc=j;
+                        if("lxdh".toUpperCase().equals(data[0][j])){//报警人联系电话
+                            lxdh=j;
                             continue;
                         }
-                        if("slsj".toUpperCase().equals(data[0][j])){//处警时间
+                        if("bjrdz".toUpperCase().equals(data[0][j])){//报警人住址
+                            bjrdz=j;
+                            continue;
+                        }
+                        if("jjdw".toUpperCase().equals(data[0][j])){//接警单位
+                            jjdw=j;
+                            continue;
+                        }
+                        if("cjdw".toUpperCase().equals(data[0][j])){//处警单位
+                            cjdw=j;
+                            continue;
+                        }
+
+                        if("cjmj".toUpperCase().equals(data[0][j])){//处警民警账号
+                            cjmj=j;
+                            continue;
+                        }
+                        if("cjmjxm".toUpperCase().equals(data[0][j])){//处警民警姓名
+                            cjmjxm=j;
+                            continue;
+                        }
+                        if("glsp".toUpperCase().equals(data[0][j])){//相关联视频
+                            glsp=j;
+                            continue;
+                        }
+                        if("bjdhsj".toUpperCase().equals(data[0][j])){//报警时间
+                            bjdhsj=j;
+                            continue;
+                        }
+                        if("jjrqsj".toUpperCase().equals(data[0][j])){//接警日期时间
+                            jjrqsj=j;
+                            continue;
+                        }
+                        if("ddxcsj".toUpperCase().equals(data[0][j])){//现场到达时间
+                            ddxcsj=j;
+                            continue;
+                        }
+                        if("cjsj".toUpperCase().equals(data[0][j])){//处警时间
                             cjsj=j;
                             continue;
                         }
-                        if("ajdzmc".toUpperCase().equals(data[0][j])){//发生地点
-                            afdi=j;
-                            continue;
-                        }
-                        if("jyaq".toUpperCase().equals(data[0][j])){//案情及处理
-                            cljqnr=j;
-                            continue;
-                        }
-                        if("djsj".toUpperCase().equals(data[0][j])){//案情及处理
+                        if("djsj".toUpperCase().equals(data[0][j])){//处警登记时间
                             djsj=j;
-                            continue;
-                        }
-                        /*if("glsp".toUpperCase().equals(data[0][j])){//相关联视频
-                            glsp=j;
                             continue;
                         }
                         if("inserttime".toUpperCase().equals(data[0][j])){//记录插入时间
@@ -245,30 +279,34 @@ public class WbfwQueryUtil {
                         if("glgs".toUpperCase().equals(data[0][j])){//关联个数
                             glgs=j;
                             continue;
-                        }*/
+                        }
                     }
                 }
+
                 if(i>2){//根据字段位置获取值
-                    RelationJzaj model=new RelationJzaj();
+                    RelationJzjq model=new RelationJzjq();
                     for(int j=0;j<data[i].length;j++){
-                        model.setAjbh(ajbh==-1? null:data[i][ajbh]);
-                        model.setGljqbh(gljqbh==-1? null:data[i][gljqbh]);
-                        model.setAjmc(ajmc==-1? null:data[i][ajmc]);
-                        model.setAjlb(ajlb==-1? null:data[i][ajlb]);
-                        model.setSldw(sldw==-1? null:data[i][sldw]);
-                        model.setAfsj(fasjd==-1? null:data[i][fasjd]);
-                        model.setBary(zbrxm==-1? null:data[i][zbrxm]);
-                        //model.setSary(data[i][sary]);
-                        //model.setCjlb(data[i][cjlb]);
-                        model.setCjrbh(cjrbh==-1? null:data[i][cjrbh]);
-                        model.setCjrxm(cjrxm==-1? null:data[i][cjrxm]);
-                        model.setCjdwbm(cjdwbm==-1? null:data[i][cjdwbm]);
-                        model.setCjdwmc(cjdwmc==-1? null:data[i][cjdwmc]);
-                        model.setCjsj(cjsj==-1? null:data[i][cjsj]);
-                        model.setAfdi(afdi==-1? null:data[i][afdi]);
-                        model.setCljqnr(cljqnr==-1? null:data[i][cljqnr]);
+                        model.setJqbh(jqbh==-1? null:data[i][jqbh]);
+                        model.setJqlb(jqlb==-1? null:data[i][jqlb]);
+                        model.setJqly(jqly==-1? null:data[i][jqly]);
+                        model.setBjlx(bjlx==-1? null:data[i][bjlx]);
+                        model.setCjbs(cjbs==-1? null:data[i][cjbs]);
+                        model.setGlaj(glaj==-1? null:data[i][glaj]);
+                        model.setJjrbh(jjrbh==-1? null:data[i][jjrbh]);
+                        model.setJjrxm(jjrxm==-1? null:data[i][jjrxm]);
+                        model.setBjr(bjr==-1? null:data[i][bjr]);
+                        model.setBjnr(bjnr==-1? null:data[i][bjnr]);
+                        model.setSfdd(sfdd==-1? null:data[i][sfdd]);
+                        model.setLxdh(lxdh==-1? null:data[i][lxdh]);
+                        model.setBjrdz(bjrdz==-1? null:data[i][bjrdz]);
+                        model.setJjdw(jjdw==-1? null:data[i][jjdw]);
+                        model.setCjdw(cjdw==-1? null:data[i][cjdw]);
+                        model.setCjmj(cjmj==-1? null:data[i][cjmj]);
+                        model.setCjmjxm(cjmjxm==-1? null:data[i][cjmjxm]);
+                        model.setGlsp(glsp==-1? null:data[i][glsp]);
                         if(djsj!=-1&&data[i][djsj]!=null){
                             try{
+                                SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyyMMddHHmmss");
                                 Date djsjTime=simpleDateFormat.parse(data[i][djsj]);
                                 model.setDjsj(djsjTime);
                             }catch (Exception ex){
@@ -276,17 +314,16 @@ public class WbfwQueryUtil {
                             }
                         }
 
+                        /*SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyyMMddHHmmss");
+                        model.setBjdhsj(jqbh==-1? null:data[i][jqbh]);
+                        model.setJjrqsj(jqbh==-1? null:data[i][jqbh]);
+                        model.setDdxcsj(jqbh==-1? null:data[i][jqbh]);
+                        model.setCjsj(jqbh==-1? null:data[i][jqbh]);
 
-                        //model.setGlsp(data[i][glsp]);
-                        /*if(data[i][inserttime]!=null){
-                            try{
-                                Date inserttime1=simpleDateFormat.parse(data[i][inserttime]);
-                                model.setInserttime(inserttime1);
-                            }catch (Exception ex){
-                                logger.error("时间转换",ex);
-                            }
-                        }
-                        model.setGlgs(data[i][glgs]==null? null:Integer.parseInt(data[i][glgs]));*/
+                        model.setInserttime(jqbh==-1? null:data[i][jqbh]);
+                        model.setGlgs(glgs==-1? null:data[i][glgs]);*/
+
+
                     }
                     modes.add(model);
                 }
@@ -294,5 +331,7 @@ public class WbfwQueryUtil {
         }
         return modes;
     }
+
+
 
 }

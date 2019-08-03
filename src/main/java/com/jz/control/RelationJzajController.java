@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -29,7 +30,7 @@ public class RelationJzajController {
     public String batchRelationJzaj(){
 
         try {
-            WbfwQueryUtil.callDxyhdjzl();
+            WbfwQueryUtil.callDxyhdjzl(0,new Date());
         } catch (Exception e) {
             logger.error("batchRelationJzaj error",e);
             return e.getMessage();
