@@ -28,6 +28,9 @@ public class RelationJzajService implements IRelationJzajService {
 
     @Transactional
     public void batchRelationJzaj(List<RelationJzaj> relationJzajs){
+        if(relationJzajs==null||relationJzajs.size()==0){
+            return;
+        }
 
         List<SchedulerConfig> schedulerConfigs=schedulerConfigService.getSchedulerConfig("ajTrigger");
         if(CollectionUtils.isEmpty(schedulerConfigs)){
@@ -48,7 +51,7 @@ public class RelationJzajService implements IRelationJzajService {
         }
 
         if(relationJzajs!=null&&relationJzajs.size()>0){
-            logger.info("excute");
+            logger.info("RelationJzajService excute");
             for (RelationJzaj item : relationJzajs){
                 RelationJzaj relationJzaj=relationJzajMapper.selectByPrimaryKey(item.getAjbh());
                 if(relationJzaj==null){

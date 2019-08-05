@@ -35,7 +35,7 @@ public class WbfwQueryJqUtil {
     private static final String ST_NODE_URL = "http://10.36.159.78:8585/node";
 
     public static List<RelationJzjq> callDxyhdjzl(int rowNum,Date startTime) throws Exception{
-        logger.info("WbfwQueryUtil callDxyhdjzl begin");
+        logger.info("WbfwQueryJqUtil callDxyhdjzl begin");
         String pkiId = "";
         String SenderID = "";// 请求方编号 。
         String ServiceID = "";// 服务方编号。
@@ -99,10 +99,10 @@ public class WbfwQueryJqUtil {
             }
 
         } catch (Exception e) {
-            logger.error("callDxyhdjzl error",e);
+            logger.error("WbfwQueryJqUtil callDxyhdjzl error",e);
             throw new RuntimeException("未获取调用接口信息");
         }
-        logger.info("WbfwQueryUtil 参数解析完成");
+        logger.info("WbfwQueryJqUtil 参数解析完成");
 
         // 基本参数,总线节点地址2
         String nodeUrl = ST_NODE_URL;
@@ -143,7 +143,7 @@ public class WbfwQueryJqUtil {
         //String countResult = caller.queryCount(condition);
         //logger.info(">>>[callQuery]总数：" + countResult);
 
-        logger.info("WbfwQueryUtil callDxyhdjzl end");
+        logger.info("WbfwQueryJqUtil callDxyhdjzl end");
         return models;
     }
 
@@ -179,7 +179,7 @@ public class WbfwQueryJqUtil {
             for(int i=0;i<data.length;i++){
                 if(i==0){//获取字段名称位置
                     for(int j=0;j<data[0].length;j++){
-                        if(("jqbh").toUpperCase().equals(data[0][j])){//警情编号
+                        if(("JJBH").toUpperCase().equals(data[0][j])){//警情编号
                             jqbh=j;
                             continue;
                         }
@@ -187,15 +187,15 @@ public class WbfwQueryJqUtil {
                             jqlb=j;
                             continue;
                         }
-                        if("jqly".toUpperCase().equals(data[0][j])){//警情来源
+                        if("LHLBDM".toUpperCase().equals(data[0][j])){//警情来源
                             jqly=j;
                             continue;
                         }
-                        if("bjlx".toUpperCase().equals(data[0][j])){//报警类型
+                        if("BJLX".toUpperCase().equals(data[0][j])){//报警类型
                             bjlx=j;
                             continue;
                         }
-                        if("cjbs".toUpperCase().equals(data[0][j])){//处警标识
+                        if("CJBS".toUpperCase().equals(data[0][j])){//处警标识
                             cjbs=j;
                             continue;
                         }
@@ -203,35 +203,35 @@ public class WbfwQueryJqUtil {
                             glaj=j;
                             continue;
                         }
-                        if("jjrbh".toUpperCase().equals(data[0][j])){//接警人编号
+                        if("JJR".toUpperCase().equals(data[0][j])){//接警人编号
                             jjrbh=j;
                             continue;
                         }
-                        if("jjrxm".toUpperCase().equals(data[0][j])){//接警人姓名
+                        if("JJRXM".toUpperCase().equals(data[0][j])){//接警人姓名
                             jjrxm=j;
                             continue;
                         }
-                        if("bjr".toUpperCase().equals(data[0][j])){//报警人
+                        if("BJR".toUpperCase().equals(data[0][j])){//报警人
                             bjr=j;
                             continue;
                         }
-                        if("bjnr".toUpperCase().equals(data[0][j])){//报警内容
+                        if("BJNR".toUpperCase().equals(data[0][j])){//报警内容
                             bjnr=j;
                             continue;
                         }
-                        if("sfdd".toUpperCase().equals(data[0][j])){//事发地点
+                        if("SFDD".toUpperCase().equals(data[0][j])){//事发地点
                             sfdd=j;
                             continue;
                         }
-                        if("lxdh".toUpperCase().equals(data[0][j])){//报警人联系电话
+                        if("LXDH".toUpperCase().equals(data[0][j])){//报警人联系电话
                             lxdh=j;
                             continue;
                         }
-                        if("bjrdz".toUpperCase().equals(data[0][j])){//报警人住址
+                        if("BJDHDZ".toUpperCase().equals(data[0][j])){//报警人住址
                             bjrdz=j;
                             continue;
                         }
-                        if("jjdw".toUpperCase().equals(data[0][j])){//接警单位
+                        if("JJDW".toUpperCase().equals(data[0][j])){//接警单位
                             jjdw=j;
                             continue;
                         }
@@ -252,11 +252,11 @@ public class WbfwQueryJqUtil {
                             glsp=j;
                             continue;
                         }
-                        if("bjdhsj".toUpperCase().equals(data[0][j])){//报警时间
+                        if("BJDHSJ".toUpperCase().equals(data[0][j])){//报警时间
                             bjdhsj=j;
                             continue;
                         }
-                        if("jjrqsj".toUpperCase().equals(data[0][j])){//接警日期时间
+                        if("JJRQSJ".toUpperCase().equals(data[0][j])){//接警日期时间
                             jjrqsj=j;
                             continue;
                         }
@@ -310,7 +310,7 @@ public class WbfwQueryJqUtil {
                                 Date djsjTime=simpleDateFormat.parse(data[i][djsj]);
                                 model.setDjsj(djsjTime);
                             }catch (Exception ex){
-                                logger.error("登记时间转换失败",ex);
+                                logger.error("WbfwQueryJqUtil 登记时间转换失败",ex);
                             }
                         }
 
