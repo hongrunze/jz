@@ -45,12 +45,14 @@ public class WbfwQueryUtil {
         String zdyhMac = "";// 终端用户MAC地址。
         String methodName ="";//请求服务方法名
         String condition="";//查询条件
+
+        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyyMMddHHmmss");
+        String startTimeStr=simpleDateFormat.format(startTime);
         try {
             //解析配置文件信息
             SAXReader saxReader = new SAXReader();
             Document doucment = saxReader.read(ResourceUtils.getFile("classpath:service_request_config.xml"));
             Element root = doucment.getRootElement();// 得到根节点
-
             for (Iterator i = root.elementIterator(); i.hasNext();) {
                 Element configEle = (Element) i.next();
                 if(configEle.getName().equals("pkiId")){
@@ -106,11 +108,13 @@ public class WbfwQueryUtil {
         int numRow=rowNum;//每次同步2000条
         QueryCaller caller = new QueryCaller(nodeUrl, SenderID, ServiceID, zdyhGmsfhm, zdyhXm, zdyhDwbm,
                 zdyhDwmc, zdyhJh, xtmc, zdyhIp, zdyhMac);
+        logger.info("WbfwQueryUtil startTimeStr" + startTimeStr);
         if(condition.equals("")){
-            condition+=" and DJSJ>="+startTime+" ";
+            condition=" DJSJ>='"+startTimeStr+"' ";
         }else{
-            condition+=" and DJSJ>"+startTime+" ";
+            condition+=" and DJSJ>='"+startTimeStr+"' ";
         }
+        logger.info("[condition]" + condition);
         String result = caller.query(condition, startRow, numRow);
         logger.info(">>>[callQuery]查询结果" + result);
 
@@ -132,8 +136,8 @@ public class WbfwQueryUtil {
             String[][] data = ServiceResultHelper.xmlString2StringArray(dest);
 
             models=getAjByData(data);
-            logger.info("=========");
-            logger.info("=========");
+            logger.info("models=========");
+            logger.info("models=========");
         }
 
         String countResult = caller.queryCount(condition);
